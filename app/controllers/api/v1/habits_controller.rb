@@ -42,7 +42,9 @@ class Api::V1::HabitsController < Api::V1::BaseController
     end
 
     def habit_params
-        params.require(:habit).permit(:title, :description, :cue, :craving, :response, :reward)
+        #params.require(:habit).permit(:title, :description, :cue, :craving, :response, :reward)
+        params.permit(:title, :description, :cue, :craving, :response, :reward)
+        #params.permit(:habit-title, :habit-description, :habit-cue, :habit-craving, :habitresponse, :habit-reward)
     end
 
     def render_error
