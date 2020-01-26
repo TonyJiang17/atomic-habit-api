@@ -7,6 +7,7 @@ class Api::V1::HabitsController < Api::V1::BaseController
     end
 
     def show
+        @image = url_for(@habit.image)
     end
 
     def update
@@ -22,6 +23,7 @@ class Api::V1::HabitsController < Api::V1::BaseController
         @habit.user = current_user
         authorize @habit
         if @habit.save
+            @habit.update!(url: url_for(@habit.image))
             render :show
         else
             render_error
@@ -42,7 +44,7 @@ class Api::V1::HabitsController < Api::V1::BaseController
     end
 
     def habit_params
-        params.require(:habit).permit(:title, :description, :cue, :craving, :response, :reward)
+        params.permit(:title, :description, :cue, :craving, :response, :reward, :image)
     end
 
     def render_error

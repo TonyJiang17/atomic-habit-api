@@ -7,6 +7,7 @@ class CreateHabits < ActiveRecord::Migration[5.2]
       t.string :craving
       t.string :response
       t.string :reward
+      t.string :url
       t.references :user, foreign_key: true
 
       t.timestamps
